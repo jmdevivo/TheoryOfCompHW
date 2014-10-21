@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage[cm,plain]{fullpage}
+\usepackage{enumerate}           % This package gives fancier enumeration styles
+\usepackage{times}               % This package provides use of Times font
+
+
+%==============================================================
+% EDIT: Change your name and the assignment number if necessary.
+\author{John Devivo}          % Use your name instead
+\title{Homework \#1}       % Note the \ before the # symbol 
+                           % # is a special character
+
+%==============================================================
+% This is where the real document begins
+% 0.1 (a-d), 0.2 (a-d)
+% 1.3, 1.4 (a,c,e), 1.5 (c,g), 1.6 (a-d)
+
+\begin{document}
+\maketitle
+\begin{center}     % Start a centered block of text
+\Large{\bf Due: Tuesday, September 9}\\
+Collaborators: Heather Corracio, Ryan Schwarz
+\end{center}       % Centering ends here
+
+\section*{E-0.1}    % Section* creates a new section without a section number
+Examine the following formal descriptions of sets so that you understand which
+members they contain.
+Write a short informal English description of each set.
+\begin{enumerate}[a.]
+\item $\{1, 3, 5, 7, \dots \}$\\
+{\bf Answer: } The set of all numbers that can be expressed as the sum of one and two times a nonnegative integer n.
+
+\item $\{\dots, -4, -2, 0, 2, 4, \dots \}$\\
+{\bf Answer: } The set of all numbers that can be expressed as the product of two and an integer n.
+
+\item $\{n | n = 2m \mbox{\ for some $m$ in $\cal{N}$}\}$\\
+{\bf Answer: } The set of all numbers n, where n can be expressed as the product of two and a number m, where m is an element of set N.
+
+\item $\{n | n = 2m \mbox{\ for some $m$ in $\cal{N}$, and $n = 3k$ for some $k$ in $\cal{N}$}\}$\\
+{\bf Answer: } The set of all numbers n, where n can be expressed as BOTH two times a number m, where m is an element of set N, AND three times a number k, where k is an element of set N.
+
+\end{enumerate}
+
+\section*{E-0.2}
+Write formal descriptions of the following sets:
+\begin{enumerate}[a.]
+\item The set containing the number 1, 10, and 100\\
+{\bf Answer: } $\{1,10,100\}$
+% Look at previous question for tips on typesetting sets in math mode
+
+\item The set containing all integers that are greater than 5\\
+{\bf Answer: } $\{6,7,8,\dots\}$
+
+\item The set containing all natural numbers that are less than 5\\
+{\bf Answer: } $\{1,2,3,4\}$
+
+\item The set containing the string \verb=aba=\\
+{\bf Answer: } $\{aba\}$
+
+\end{enumerate}
+
+\section*{E-1.3}
+
+The formal description of a DFA $M$ is $(\{q_1, q_2, q_3, q_4, q_5\}, \{{\tt u}, {\tt d}\},
+\delta, q_3, \{q_3\})$,
+where $\delta$ is given by the following table.
+Give the state diagram of this machine.
+\begin{center}
+$\begin{array}{c|cc}
+     & {\tt u} & {\tt d}\\
+\hline
+q_1  & q_1     & q_2\\
+q_2  & q_1     & q_3\\
+q_3  & q_2     & q_4\\
+q_4  & q_3     & q_5\\
+q_5  & q_4     & q_5
+\end{array}
+$
+\end{center}
+
+{\bf Answer: } Save this as the file \verb=1_3.jff=
+% Note the \verb=...= sets everything in plain ASCII (verbatim) text
+% until the matching = symbol appears.
+% So, the file should be called: 1_3.jff
+
+\section*{E-1.4}
+% a,c,e
+Each of the following languages is the intersection of two simpler languages.
+In each part, construct DFAs for the simpler languages, then combine them using
+the construction discussed in footnote 3 (page 46) to give the state diagram
+of a DFA for the language given.
+In all parts, $\Sigma = \{a, b\}$.
+\begin{enumerate}[a.]
+\item $\{ w | w \mbox{\ has at least three {\tt a}'s and at least two {\tt b}'s}\}$
+\stepcounter{enumi}
+\item $\{ w | w \mbox{\ has an even number of {\tt a}'s and one or two {\tt b}'s}\}$
+\stepcounter{enumi}
+\item $\{ w | w \mbox{\ starts with an {\tt a} and has at most one {\tt b}}\}$
+\end{enumerate}
+
+{\bf Answer: } You only have to show the final diagram for each problem.
+(If you are having difficulty combining, then save and submit the 
+intermediate diagrams as well.)
+Save these as the files \verb=1_4_a.jff, 1_4_c.jff, 1_4_e.jff=
+% Again, the files are: 1_4_a.jff, 1_4_c.jff, and 1_4_f.jff
+
+\section*{E-1.5}
+Each of the following languages is the complement of a simpler language.
+In each part, construct a DFA for the simpler language, then use it to give the
+state diagram of a DFA for the language given.
+In all parts, $\Sigma = \{a, b\}$.
+\begin{enumerate}[a.]
+\setcounter{enumi}{2}
+\item $\{w | w \mbox{\ contains neither the substrings {\tt ab} nor {\tt ba}}\}$
+\setcounter{enumi}{6}
+\item $\{w | w \mbox{\ is any string that doesn't contain exactly two {\tt a}'s}\}$
+\end{enumerate}
+
+{\bf Answer: } You only have to show the final diagram for each problem.
+Save these as the files \verb=1_5_c.jff, 1_5_g.jff=
+
+\section*{E-1.6}
+Give state diagrams of DFAs recognizing the following languages.
+In all parts, the alphabet is $\{0,1\}$.
+\begin{enumerate}[a.]
+\item $\{ w | w \mbox{\ begins with a 1 and ends with a 0}\}$
+\item $\{ w | w \mbox{\ contains at least three 1s}\}$
+\item $\{ w | w \mbox{\ contains the substring 0101 (i.e., $w = x0101y$ for some
+$x$ and $y$)}\}$
+\item $\{ w | w \mbox{\ has length at least 3 and its third symbol is a 0}\}$
+\end{enumerate}
+
+{\bf Answer: } Save these as the files \verb=1_6_a.jff, 1_6_b.jff, 1_6_c.jff, 1_6_d.jff=
+
+\end{document}

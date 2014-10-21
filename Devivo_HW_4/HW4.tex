@@ -1,0 +1,125 @@
+\documentclass{article}
+\usepackage[cm,plain]{fullpage}
+\usepackage{enumerate}           % This package gives fancier enumeration styles
+\usepackage{times}               % This package provides use of Times font
+\usepackage{graphicx}            % This package provides use of graphics
+
+
+%==============================================================
+% EDIT: Change your name and the assignment number if necessary.
+\author{John Devivo}          % Use your name instead
+\title{Homework \#4}       % Note the \ before the # symbol 
+                           % # is a special character
+
+%==============================================================
+% This is where the real document begins
+% 2.1.c, 2.2, 2.4.e, 2.6.b, 2.19
+
+\begin{document}
+\maketitle
+\begin{center}     % Start a centered block of text
+\Large{\bf Due: Thursday, October 2}\\
+Collaborators: None
+\end{center}       % Centering ends here
+
+\section*{E-2.1} %c
+Recall the CFG $G_4$ that we gave in Example 2.4. 
+For convenience, let's rename the variables with single letters as follows.
+\begin{eqnarray*}
+E & \rightarrow & E\ +\ T\ |\ T\\
+T & \rightarrow & T\ \times\ F\ |\ F\\
+F & \rightarrow & (E)\ |\ \verb=a=
+\end{eqnarray*}
+
+Give parse trees and derivations for each of the following (just c):
+\begin{enumerate}[a.]
+\setcounter{enumi}{2}
+\item \verb=a+a+a=\\
+{\bf Answer: } % Your answer goes here...
+\begin{verbatim}
+            E
+          /  \
+         E  + T
+        / \   |
+       E + T  F
+       |   |  |
+       T   F  a
+       |   |
+       F   a
+       |
+       a
+\end{verbatim}
+Here is a partial derivation:\\
+
+$E\rightarrow \\
+E + T\rightarrow \\
+E + F\rightarrow \\
+E + a\rightarrow \\
+E + T + a\rightarrow \\
+E + F + a\rightarrow \\
+E + a + a\rightarrow \\
+T + a + a\rightarrow \\
+F + a + a\rightarrow \\
+a + a + a
+$
+\end{enumerate}
+
+\section*{E-2.2}
+\begin{enumerate}[a.]
+\item Use the languages $A=\{a^mb^nc^n|\ m,n \geq 0\}$ and
+$B=\{a^nb^nc^m|\ m,n \geq 0\}$ together with Example 2.36 to show
+that the class of context-free languages is not closed under intersection.\\
+{\bf Answer: } We begin by assuming that Context Free Languages are closed under the intersection operation for the sake of contradiction. \\
+The first step in using languages $A$ and $B$ to show that CFLs are closed under intersection is to prove that both languages are CFLs. We can do this by constructing  context free grammars to represent $A$ and $B$.\\
+A context free grammar that represents $A$ can be shown as \\ \\
+$S\rightarrow FG | F | G | \epsilon$ \\
+$G\rightarrow bc | bGc | \epsilon $ \\
+$F\rightarrow a | aF | \epsilon$ \\ \\
+thus $A$ is a context free language. \\ \\
+A context free grammar that represents $B$ can be shown as \\ \\
+$S\rightarrow FG | F | G | \epsilon$ \\
+$F\rightarrow ab | aFb | \epsilon$ \\
+$G\rightarrow c | cG | \epsilon$ \\ \\
+
+thus $B$ is a context free language. \\ \\
+
+If the class of context free languages were closed under intersection, the intersection of $A$ and $B$, $A \cap B = C = \{a^nb^nc^n | n \geq 0\}$ would also be a context free language. However, example 2.36 in the book uses the pumping for context free languages to prove that $C$ is not a context free language. We have a contradiction, context free languages are not closed under intersection.
+
+\item Use part (a) and DeMorgan's law (Theorem 0.20) to show that the class
+of context-free languages is not closed under complementation.\\
+{\bf Answer: } 
+In order to prove that the set of context free languages is not closed under compliment, we first assume that they are closed under compliment. This would imply that $D =  \bar{A}$ is a context free grammar and $E = \bar{B}$ is a context free language. Since Context free languages are closed under the union operation, we know that $F = D\cup E$ is a context free language. \\ \\
+If CFLs are closed under compliment, we know that $\bar{F}$ is a context free language. Using DeMorgan's law we know that $F = C$, however we showed in part a that $C$ is not a context free language, thus we have our contradiction. Context Free Languages are not closed under compliment.
+\end{enumerate}
+
+\section*{E-2.4} %e
+Give context-free languages that generate the following languages.
+In all parts, the alphabet is $\Sigma = \{0,1\}$.
+\begin{enumerate}[a.]
+\setcounter{enumi}{4}
+\item $\{w = w^R, \mbox{\ that is, $w$ is a palindrome.}\}$\\
+{\bf Answer: } $S\rightarrow0S0|1S1|=$
+\end{enumerate}
+
+\section*{E-2.6} %b
+Give context-free grammars generating the following languages.
+\begin{enumerate}[a.]
+\setcounter{enumi}{1}
+\item The complement of the language $\{a^nb^n|n\geq 0\}$.\\
+{\bf Answer: }
+$S\rightarrow A | B$ \\
+$A\rightarrow 1A0 | 1A | 1$ \\
+$B\rightarrow 1B0 | B0 | 0$
+\end{enumerate}
+
+\section*{E-2.19}
+Let CFG $G$ be the following grammar.
+\begin{eqnarray*}
+S & \rightarrow & aSb\ |\ bY\ |\ Ya\\
+Y & \rightarrow & bY\ |\ aY\ |\ \epsilon
+\end{eqnarray*}
+Give a simple description of $L(G)$ in English.
+Use that description to give a CFG for $\overline{L(G)}$, the complement of $L(G)$.\\
+{\bf Answer: } The CFG $G$ describes the language of all permutations of $n \geq 0 a$ characters and $m \geq 0 b$ characters but also excludes the empty set. The compliment of $L(G)$ would be a language that only describes the empty string $\{ \epsilon \}$.
+
+\end{document}

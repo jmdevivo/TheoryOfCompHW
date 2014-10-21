@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[cm,plain]{fullpage}
+\usepackage{enumerate}           % This package gives fancier enumeration styles
+\usepackage{times}               % This package provides use of Times font
+\usepackage{graphicx}            % This package provides use of graphics
+
+
+%==============================================================
+% EDIT: Change your name and the assignment number if necessary.
+\author{John Devivo}          % Use your name instead
+\title{Homework \#3}       % Note the \ before the # symbol 
+                           % # is a special character
+
+%==============================================================
+% This is where the real document begins
+% 1.20(a-d), 1.46(a,c), 1.49, 1.53, E.C. 1.57
+
+\begin{document}
+\maketitle
+\begin{center}     % Start a centered block of text
+\Large{\bf Due: Tuesday, September 23}\\
+Collaborators: None
+\end{center}       % Centering ends here
+
+\section*{E-1.20}
+% a,b,c,d
+
+For each of the following languages, give two strings that are 
+members and two strings that are {\em not} members- a total of
+four strings for each part.
+Assume the alphabet $\Sigma = \{{\tt a},{\tt b}\}$ in all parts.
+\begin{enumerate}[a.]
+\item ${\tt a}^*{\tt b}^*$\\
+{\bf Answer: } Members: [ ${aab}, {abbbb}$] NonMembers: [${aba}, {baa}$]
+
+\item ${\tt a}({\tt ba})^*{\tt b}$\\
+{\bf Answer: } Members: [ ${abab}, {ababab}]$ NonMembers: [${aaaa}, {bbbbbb}$]
+
+\item ${\tt a}^* \cup {\tt b}^*$\\
+{\bf Answer: } Members: [$ {aabb}, {aaaa}$] NonMembers: [${ba}, {bababa}$]
+
+\item $({\tt aaa})^*$\\
+{\bf Answer: } Members: [${aaa}, {aaaaaaaaa}$] NonMembers: [${a}, {abababbb}$]
+
+\end{enumerate}
+
+\section*{E-1.46}
+% a,c,d
+
+Prove that the following languages are not regular.
+You may use the pumping lemma and the closure of the class of regular 
+languages under union, intersection, and complement.
+\begin{enumerate}[a.]
+\item $\{0^n1^m0^n | m,n \geq 0\}$\\
+{\bf Answer: } Let $B$ be the language $\{0^n1^n|n \geq 0 \}$. We use the pumping lemma to prove that $B$ is not regular. The proof is by contradiction. \\
+Assume to the contrary that $B$ is regular. Let $p$ be the pumping length given by the pumping lemma. Choose $s$ to be the string $0^p10^p$. Because $s$ is a member of $B$ and $s$ has a length more than $p$, the pumping lemma states that $s$ can be split into three pieces, $s = xyz$, where for any $i \geq 0$ the string $xy^iz$ is in $B$. \\
+When dividing $s$ into $xyz$ we know the pumping lemma that $|xy| \leq p$. As such, since the first $p$ elements in the string $s$ are 0's, we know that both $x$ and $y$ must be composed entirely of 0's. Knowing this we can show the string $s$ cannot be pumped. Since $x$ and $y$ must be composed entirely of 0's, we can express $x = 0^{p-a}$, $y = 0^a$, and $z=10^p$, making $xyz = 0^{p-a}0^a10^p$. Pumping up, the string $xyyz = 0^{p+a}10^p$ has more 0's on the left hand side of the 1, than the right making $xyyz \notin B$. If $B$  were a regular language then $xyyz$ would be an element of $B$, but since it isn't we reach a contradiction, $B$ is not a regular language.
+
+\stepcounter{enumi}
+\item $\{w | w \in \{0,1\}^* \mbox{\ is not a palindrome}\}$\\
+{\bf Answer: } Let $A$ be the language $\{w | w \in \{0,1\}^* \mbox{\ is not a palindrome}\}$. We use closure of regular languages under compliment and the pumping lemma to prove that $A$ is not regular. The proof is by contradiction. \\
+Assume for sake of contradiction that $A$ is regular. Since regular languages are closed under compliment, we know that the compliment of the set $A$, $B =  \{w | w \in \{0,1\}^* \mbox{\ is a palindrome}\}$ is a regular language. \\ 
+Let $p$ be the pumping length of $B$. Choose $s$ to be the string $0^p10^p$. Because $s$ is a member of $B$, and $|s|$ is greater than $p$, the pumping lemma states that $s$ can be split into three pieces $s=xyz$ where for any $i \geq 0$, the string $xy^iz \in B$. Since the pumping lemma states $xy \leq p$, we know that $y$ is composed entirely of  0's. Knowing this we can express $xyz = 0^{p-a}0^a10^p$ with $x = 0^p-a$, $y=0^a$, and $z=10^p$. According to the first condition of the pumping lemma, $xyyz \in B$, however we know that $xyyz = 0^{p+a}10^p$ and $0^{p+a}10^p \notin B$ because it is not a palindrome. Here is where we find our contradiction that shows our assumption that $A$ is regular is false. $A$ is not a regular language.
+
+\item $\{wtw | w,t \in \{0,1\}^+\}$\\
+{\bf Answer: } Let $A$ be the language $\{wtw | w,t \in \{0,1\}^+\}$. We will use the pumping lemma to prove that $A$ is not regular. To do this we will assume for sake of contradiction that $A$ is regular. \\
+Let $p$ be the pumping length of $A$. Choose $s$ to be the string $0^p110^p1 \in A$. By the pumping lemma we know that $s$ can be split into three parts $xyz$. We also know from the pumping lemma's second condition that $|xy| \leq p|$ and knowing this we can say that $y = 0^a$ for some $a>0$. By the pumping lemma we know that $xy^iz \in A$ for some $i \geq 0$. However when we pump up $xyyz = 0^{p+a}110^p1 \notin A$. This provides our contradiction. $A$ is not a regular language. 
+
+\end{enumerate}
+
+\section*{E-1.49}
+
+\begin{enumerate}[a.]
+\item Let $B=\{1^ky|y \in \{0,1\}^* \mbox{\ and $y$ contains at least $k$ 1s,
+for $k \geq 1$}\}$.
+Show that $B$ is a regular language.\\
+{\bf Answer: } We can prove that $B$ is a regular language by constructing a regular expression that describes the language. The regular expression $1 \circ 0^{\star} \circ 1 \circ (0 \cup 1)^{\star}$
+
+\item Let $C=\{1^ky|y \in \{0,1\}^* \mbox{\ and $y$ contains at most $k$ 1s,
+for $k \geq 1$}\}$.
+Show that $C$ isn't a regular language.\\
+{\bf Answer: } Assume for sake of contradiction that $C$ is a regular language.  \\
+Let $p$ be the pumping length of $C$. Let $s$ be the string $1^p0^p1^p \in C$. The pumping lemma states that $s$ can be split into three sections $xyz$ where $xy \leq p$. With this we know that $x=1^{p-k}$, $y=1^k$, and $z=0^p1^p$ so we see $xyz = 1^p0^p1^p \in C$. The pumping lemma also states that $xy^iz \in C$ for all $i \geq 0$. However if we pump down we see that $xz = 1^{p-k}0^p1^p \notin C$ providing our contradiction. $C$ is not a regular language. 
+\end{enumerate}
+
+\section*{E-1.53}
+
+Let $\Sigma = \{{\tt 0},{\tt 1},{\tt +},{\tt =}\}$ and
+$$ ADD = \{x{\tt =}y{\tt +}z | x,y,z \mbox{\ are binary integers, and $x$ is the sum of $y$ and $z$}\}.$$
+Show that $ADD$ is not regular.\\
+{\bf Answer: } Assume for sake of contradiction that ADD is regular. \\
+Let $p$ be the pumping length of ADD. Let $s$ be as string such that $s= 1^p = 1^{p-1}0 +1 \in $ ADD. The pumping lemma states that $s$ can be broken down into three portions $xyz = 1^p = 1^{p-1}0 +1$ and since, from the pumping lemma, we know $|xy| \leq p$ and $|y| \geq 1$ we can say $x = 1^{p-k}$, $y=p^k$, and $z=  =1^{p-1}0 +1$. We know from the pumping lemma that $xy^iz \in $ ADD for all $i \geq 0$. However $xy^2z = p^{p+k} = 1^{p-1}0 +1 \notin$ ADD. This provides our contradiction. ADD is not regular.
+
+
+\section*{E-1.57 (Extra Credit)}
+
+\newcommand{\AH}{\ensuremath{A_{\frac{1}{2}-}}}
+
+If $A$ is any language, let $\AH$ be the set of all first halves
+of strings in $A$ so that
+$$ \AH = \{x | \mbox{\ for some $y$, $|x| = |y|$ and $xy \in A$}\}. $$
+Show that if $A$ is regular, then so is $\AH$.\\
+{\bf Answer: } % Your proof goes here.
+
+\end{document}
