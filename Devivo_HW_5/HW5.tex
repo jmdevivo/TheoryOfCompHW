@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[cm,plain]{fullpage}
+\usepackage{enumerate}           % This package gives fancier enumeration styles
+\usepackage{times}               % This package provides use of Times font
+\usepackage{graphicx}            % This package provides use of graphics
+
+
+%==============================================================
+% EDIT: Change your name and the assignment number if necessary.
+\author{Jane Doe}          % Use your name instead
+\title{Homework \#5}       % Note the \ before the # symbol 
+                           % # is a special character
+
+%==============================================================
+% This is where the real document begins
+% 2.12, 2.30 (a,d), 2.31
+
+\begin{document}
+\maketitle
+\begin{center}     % Start a centered block of text
+\Large{\bf Due: Tuesday, October 14}\\
+Collaborators: LIST YOUR COLLABORATORS OR SAY NONE
+\end{center}       % Centering ends here
+
+\section*{E-2.12}
+Convert the CFG $G$ given in Exercise 2.3 to an equivalent PDA, using the
+procedure given in Theorem 2.20. (You may use multiple character input - as in 
+Figure 2.24)\\
+
+{\bf Answer: } % Use JFLAP to create a PDA and then save that image as a PNG.
+% Here is one way to include a graphics image (we'll do a better form later)
+% This is basically Figure 2.24.
+\begin{center}  % Just to center it
+\includegraphics[width=.5\textwidth]{2_12.png}
+\end{center}
+
+\section*{E-2.30} %(a,d)
+Use the pumping lemma to show that the following languages are not
+context free.
+\begin{enumerate}[a.]
+\item $\{ 0^n 1^n 0^n 1^n\ |\ n \geq 0\}$\\
+{\bf Answer: } let $ L = \{ 0^n 1^n 0^n 1^n\ |\ n \geq 0\}$. Assume for sake of contradiction that $L$ is a context-free language. Since $L$ is a context-free language, there exists a pumping length $p$ such that any string in language $L$ of length $p$ can be divided into $5$ pieces, $s = uvxyz$, satisfying the following conditions \\
+1) for each $i\geq 0$, $uv^ixy^iz \in L$ \\
+2) $|vy| >0$ \\
+3) $|vxy| \leq p$ \\
+let $s=0^p1^p0^p1^p$. We know that $s \in L$ however there exists no way to break string $s$ into $uvxyz$. Since $|vxy| \leq p$ we know that $vxy \leq 0^p$, $vxy \leq 1^p$, or $vxy = 1^i0^j$, where $i$ and $j$ are less than $p$. Knowing this we know that there exists no way to split $s$ into $uvxyz$ due to the inability to pump up, $uv^2xy^2z$ no matter what way $s$ is divided (no mater what way the string is divided pumping up will always lead to an imbalance in the number of zeros and ones). We have a contradiction, thus $L$ is not a context free language.
+ 
+
+\stepcounter{enumi}  % Skip b
+\stepcounter{enumi}  % Skip c
+\item $\{ t_1\#t_2\#\cdots\#t_k\ |\ k \geq 2, 
+\mbox{each $t_i \in \{a,b\}^*$, and $t_i=t_j$ for some $i \neq j$}\}$\\
+{\bf Answer: } let  $L =  \{ t_1\#t_2\#\cdots\#t_k\ |\ k \geq 2,\mbox{each $t_i \in \{a,b\}^*$, and $t_i=t_j$ for some $i \neq j$}\}$. Assume for sake of contradiction that $L$ is a context-free language. Since $L$ is a context-free language, there exists a pumping length $p$ such that any string in language $L$ of length $p$ can be divided into $5$ pieces, $s = uvxyz$, satisfying the following conditions \\
+1) for each $i\geq 0$, $uv^ixy^iz \in L$ \\
+2) $|vy| >0$ \\
+3) $|vxy| \leq p$ \\
+let $s = a^pb^p\#a^pb^p$ where $t_1 = a^pb^p$ before the $\#$ and $t_2 = a^pb^p$ after the $\#$ . Knowing rules 2 and 3 of the pumping lemma, we know that $vxy$ can consist of either exclusively $a$ or $b$ characters from either $t_1$ or $t_2$, a combination of $a$ and $b$ characters $a^fb^g$ from either $t_1$ or $t_2$, a singular $\#$, or finally a combination of $b$ characters from $t_1$, the $\#$ and $a$ characters from $t_2$: $b^t\#a^u$ where $t,u \geq 0$. The pumping lemma states that we can always pump down to the string $s=vxz \in L$. However, no matter how the string is partitioned, $vxz \notin L$. We have our contradiction. $L$ is not a regular language.
+
+\end{enumerate}
+
+\section*{E-2.31}
+Let $B$ be the language of all palindromes over $\{0,1\}$ containing equal
+numbers of $0$s and $1$s.  Show that $B$ is not context free.
+
+{\bf Answer: } Assume for sake of contradiction that $B$ is a context-free language. Since $B$ is a context-free language, there exists a pumping length $p$ such that any string in language $B$ of length $p$ can be divided into $5$ pieces, $s = uvxyz$, satisfying the following conditions \\
+1) for each $i\geq 0$, $uv^ixy^iz \in L$ \\
+2) $|vy| >0$ \\
+3) $|vxy| \leq p$ \\
+let $s = 0^p1^{2p}0^p \in B$. We know from rules 2 and 3 of the pumping lemma that $vxy$ can be only cannot include $0$ characters from both before and after the $1$ characters. $vxy$ can be either entirely $0$ characters before or after the $1$ characters $0^i1^j$ (where $i,j > 0$), or $ 1^i0^j$ where $i,j >0$). However, in all of these cases the string cannot be pumped down to yield a string $vxz \in B$. As such we have a contradiction, B is not a context free grammar.
+\end{document}
